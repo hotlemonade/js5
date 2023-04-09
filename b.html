@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 3000px;
+            background-color: blanchedalmond;
+        }
+
+        #img {
+            height: 500px;
+            position: fixed;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="countdown"></h1>
+
+    <img id="img" src="./NNP/0.png">
+
+    <div>
+
+    </div>
+
+    <script>
+        const element = document.getElementById("img");
+        const totalNum = 71;
+        let frame = 0;
+        element.setAttribute("src", "./NNP/" + frame + ".png");
+        let height
+
+        height = Math.floor(window.scrollY / (document.body.clientHeight - window.innerHeight) * 100);
+        frame = Math.floor(totalNum * height / 100)
+        document.getElementById("img").setAttribute("src", "./NNP/" + frame + ".png");
+
+        
+
+        window.addEventListener("scroll", function () {
+
+            height = Math.floor(window.scrollY / (document.body.clientHeight - window.innerHeight) * 100);
+            frame = Math.floor(totalNum * height / 100)
+            document.getElementById("img").setAttribute("src", "./NNP/" + frame + ".png");
+        });
+    </script>
+
+    <script>
+        // 카운트다운 시작 시간(초)
+        const startTime = 60;
+
+        let timeLeft = startTime;
+        const countdownEl = document.getElementById('countdown');
+
+        // 카운트다운 함수
+        function countdown() {
+            if (timeLeft === 0) {
+                countdownEl.innerHTML = "시간 종료!";
+            } else {
+                countdownEl.innerHTML = timeLeft + "초 남았습니다.";
+                timeLeft--;
+                setTimeout(countdown, 1000);
+            }
+        }
+
+        // 카운트다운 시작
+        countdown();
+    </script>
+
+
+</body>
+
+</html>
